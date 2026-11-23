@@ -1,6 +1,6 @@
 export type Task = {
   id: string;
   title: string;
-  description: string | null;
+  desc: string | null;
   completed: boolean;
 };
