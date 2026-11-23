@@ -22,11 +22,18 @@ function App() {
     setTasks((prev) => [newTask, ...prev]);
   };
 
+  const toggleTask = (id: string) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
+    );
+  };
   return (
     <>
       <TaskTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <TaskForm onAddTask={handleAddTask} />
-      <TaskList tasks={tasks} activeTab={activeTab} />
+      <TaskList tasks={tasks} toggleTask={toggleTask} activeTab={activeTab} />
     </>
   );
 }

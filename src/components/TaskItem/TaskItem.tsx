@@ -1,15 +1,21 @@
 import type { Task } from '../../types/task';
+import { Checkbox } from '@mantine/core';
 
 type TaskItemProps = {
   task: Task;
+  toggleTask: (id: string) => void;
 };
 
-export const TaskItem = (props: TaskItemProps) => {
+export const TaskItem = ({ task, toggleTask }: TaskItemProps) => {
   return (
     <li>
-      <span>{props.task.title}</span>
+      <Checkbox
+        label={task.title}
+        checked={task.completed}
+        onChange={() => toggleTask(task.id)}
+      />
       <br />
-      <p>{props.task.desc}</p>
+      <p>{task.desc}</p>
     </li>
   );
 };
