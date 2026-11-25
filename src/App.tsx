@@ -8,7 +8,7 @@ import type { TaskTab } from './types/tabs';
 function App() {
   // state
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [activeTab, setActiveTab] = useState<TaskTab>('all');
+  const [activeTab, setActiveTab] = useState<TaskTab>('incomplete');
 
   // タスク追加
   const handleAddTask = (title: string, desc: string) => {
@@ -22,6 +22,7 @@ function App() {
     setTasks((prev) => [newTask, ...prev]);
   };
 
+  // タスク完了/未完了トグル
   const toggleTask = (id: string) => {
     setTasks(
       tasks.map((task) =>
@@ -29,11 +30,32 @@ function App() {
       ),
     );
   };
+
+  // タスク未完了／完了／すべてのタスク絞り込み
+  const getActiveTabTasks = (): Task[] => {
+    if (activeTab === 'incomplete')
+      return tasks.filter((task) => !task.completed);
+    if (activeTab === 'completed')
+      return tasks.filter((task) => task.completed);
+    return tasks;
+  };
+
+  const activeTabTasks = getActiveTabTasks();
+  const incompleteCount = tasks.filter((task) => !task.completed).length;
+  const completedCount = tasks.filter((task) => task.completed).length;
+  const allCount = tasks.length;
+
   return (
     <>
-      <TaskTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+      <TaskTabs
+        incompleteCount={incompleteCount}
+        completedCount={completedCount}
+        allCount={allCount}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
       <TaskForm onAddTask={handleAddTask} />
-      <TaskList tasks={tasks} toggleTask={toggleTask} activeTab={activeTab} />
+      <TaskList tasks={activeTabTasks} toggleTask={toggleTask} />
     </>
   );
 }

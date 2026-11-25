@@ -1,1 +1,1 @@
-export type TaskTab = 'all' | 'incomplete' | 'completed';
+export type TaskTab = 'incomplete' | 'completed' | 'all';
