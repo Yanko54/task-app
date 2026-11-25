@@ -9,7 +9,7 @@ type TaskListProps = {
 export const TaskList = ({ tasks, toggleTask }: TaskListProps) => {
   return (
     <>
-      <ul>
+      <ul style={{ listStyle: 'none' }}>
         {tasks.map((task) => (
           <TaskItem key={task.id} task={task} toggleTask={toggleTask} />
         ))}

@@ -47,6 +47,7 @@ function App() {
 
   return (
     <>
+      <TaskForm onAddTask={handleAddTask} />
       <TaskTabs
         incompleteCount={incompleteCount}
         completedCount={completedCount}
@@ -54,7 +55,6 @@ function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      <TaskForm onAddTask={handleAddTask} />
       <TaskList tasks={activeTabTasks} toggleTask={toggleTask} />
     </>
   );

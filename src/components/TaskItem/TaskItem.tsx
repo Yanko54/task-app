@@ -9,12 +9,15 @@ type TaskItemProps = {
 export const TaskItem = ({ task, toggleTask }: TaskItemProps) => {
   return (
     <li>
-      <Checkbox
-        label={task.title}
-        checked={task.completed}
-        onChange={() => toggleTask(task.id)}
-      />
-      <br />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Checkbox
+          aria-label={task.title}
+          checked={task.completed}
+          color='cyan'
+          onChange={() => toggleTask(task.id)}
+        />
+        <span>{task.title}</span>
+      </div>
       <p>{task.desc}</p>
     </li>
   );

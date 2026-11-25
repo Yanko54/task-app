@@ -18,6 +18,8 @@ export const TaskTabs = ({
 }: TaskTabsPrps) => {
   return (
     <Tabs
+      defaultValue='incomplete'
+      color='cyan'
       value={activeTab}
       onChange={(value) => {
         if (
@@ -30,7 +32,9 @@ export const TaskTabs = ({
       }}
     >
       <Tabs.List>
-        <Tabs.Tab value='incomplete'>未完了 {incompleteCount} </Tabs.Tab>
+        <Tabs.Tab color='cyan' value='incomplete'>
+          未完了 {incompleteCount}{' '}
+        </Tabs.Tab>
         <Tabs.Tab value='completed'>完了 {completedCount}</Tabs.Tab>
         <Tabs.Tab value='all'>すべて {allCount}</Tabs.Tab>
       </Tabs.List>
