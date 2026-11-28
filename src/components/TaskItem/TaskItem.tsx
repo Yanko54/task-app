@@ -1,5 +1,6 @@
 import type { Task } from '../../types/task';
 import { Checkbox } from '@mantine/core';
+import { Group, Stack, Text } from '@mantine/core';
 
 type TaskItemProps = {
   task: Task;
@@ -9,16 +10,22 @@ type TaskItemProps = {
 export const TaskItem = ({ task, toggleTask }: TaskItemProps) => {
   return (
     <li>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Group align='flex-start' wrap='nowrap'>
         <Checkbox
           aria-label={task.title}
           checked={task.completed}
           color='cyan'
           onChange={() => toggleTask(task.id)}
         />
-        <span>{task.title}</span>
-      </div>
-      <p>{task.desc}</p>
+        <Stack gap={4}>
+          <Text td={task.completed ? 'line-through' : 'none'}>
+            {task.title}
+          </Text>
+          <Text c='dark' fz='xs' style={{ whiteSpace: 'pre-wrap' }}>
+            {task.desc}
+          </Text>
+        </Stack>
+      </Group>
     </li>
   );
 };

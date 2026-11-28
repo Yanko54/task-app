@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextInput, Textarea, UnstyledButton, Group } from '@mantine/core';
+import { TextInput, Textarea, ActionIcon, Group, Stack } from '@mantine/core';
 import { IconTextPlus, IconPlus } from '@tabler/icons-react';
 
 type TaskFormProps = { onAddTask: (title: string, desc: string) => void };
@@ -16,31 +16,33 @@ export const TaskForm = ({ onAddTask }: TaskFormProps) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <Group align='flex-end'>
+    <form onSubmit={handleSubmit}>
+      <Stack mx='auto' gap='4'>
+        <Group wrap='nowrap'>
           <TextInput
-            label='タスクを追加'
-            placeholder='タイトル'
+            style={{ flex: 1, minWidth: 0 }}
+            aria-label='タスクタイトル'
+            placeholder='タスクを追加する'
             value={title}
             onChange={(e) => setTitle(e.currentTarget.value)}
           />
-          <UnstyledButton color='cyan' size='xs' type='submit'>
-            <IconPlus stroke={2} />
-          </UnstyledButton>
+          <ActionIcon color='cyan' aria-label='AddTask' type='submit'>
+            <IconPlus stroke={1.5} />
+          </ActionIcon>
         </Group>
         <Group align='flex-start'>
-          {<IconTextPlus stroke={2} style={{ marginTop: 5 }} />}
+          {<IconTextPlus stroke={1.5} style={{ marginTop: 4 }} />}
           <Textarea
-            aria-label='説明'
-            placeholder='説明'
+            style={{ flex: 1, minWidth: 0 }}
+            aria-label='タスク説明'
+            placeholder='タスクの説明'
             autosize
             variant='unstyled'
             value={desc}
             onChange={(e) => setDesc(e.currentTarget.value)}
           />
         </Group>
-      </form>
-    </>
+      </Stack>
+    </form>
   );
 };

@@ -1,10 +1,9 @@
-import { Tabs } from '@mantine/core';
 import type { TaskTab } from '../../types/tabs';
+import { Tabs, Text } from '@mantine/core';
 
 type TaskTabsPrps = {
   incompleteCount: number;
   completedCount: number;
-  allCount: number;
   activeTab: TaskTab;
   setActiveTab: (value: TaskTab) => void;
 };
@@ -12,7 +11,6 @@ type TaskTabsPrps = {
 export const TaskTabs = ({
   incompleteCount,
   completedCount,
-  allCount,
   activeTab,
   setActiveTab,
 }: TaskTabsPrps) => {
@@ -32,11 +30,26 @@ export const TaskTabs = ({
       }}
     >
       <Tabs.List>
-        <Tabs.Tab color='cyan' value='incomplete'>
-          未完了 {incompleteCount}{' '}
+        <Tabs.Tab
+          color='cyan'
+          value='incomplete'
+          style={{ paddingInline: '24px' }}
+        >
+          未完了
+          <Text span size='xl' fw={700} ml='sm'>
+            {incompleteCount}
+          </Text>
         </Tabs.Tab>
-        <Tabs.Tab value='completed'>完了 {completedCount}</Tabs.Tab>
-        <Tabs.Tab value='all'>すべて {allCount}</Tabs.Tab>
+        <Tabs.Tab value='completed' style={{ paddingInline: '24px' }}>
+          完了
+          <Text span size='xl' fw={700} ml='sm'>
+            {completedCount}
+          </Text>
+        </Tabs.Tab>
+        <Tabs.Tab value='all' style={{ paddingInline: '24px' }}>
+          すべて
+          <Text span size='xl' fw={700} ml='sm'></Text>
+        </Tabs.Tab>
       </Tabs.List>
     </Tabs>
   );

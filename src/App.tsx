@@ -4,6 +4,7 @@ import { TaskForm } from './components/TaskForm/TaskForm';
 import { TaskList } from './components/TaskList/TaskList';
 import type { Task } from './types/task';
 import type { TaskTab } from './types/tabs';
+import { Container, Stack } from '@mantine/core';
 
 function App() {
   // state
@@ -43,20 +44,20 @@ function App() {
   const activeTabTasks = getActiveTabTasks();
   const incompleteCount = tasks.filter((task) => !task.completed).length;
   const completedCount = tasks.filter((task) => task.completed).length;
-  const allCount = tasks.length;
 
   return (
-    <>
-      <TaskForm onAddTask={handleAddTask} />
-      <TaskTabs
-        incompleteCount={incompleteCount}
-        completedCount={completedCount}
-        allCount={allCount}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
-      <TaskList tasks={activeTabTasks} toggleTask={toggleTask} />
-    </>
+    <Container size='md' p={{ base: 'md', sm: 'xl' }}>
+      <Stack maw={600} w='100%' mx='auto'>
+        <TaskForm onAddTask={handleAddTask} />
+        <TaskTabs
+          incompleteCount={incompleteCount}
+          completedCount={completedCount}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+        <TaskList tasks={activeTabTasks} toggleTask={toggleTask} />
+      </Stack>
+    </Container>
   );
 }
 

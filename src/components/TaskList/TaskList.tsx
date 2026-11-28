@@ -1,5 +1,6 @@
 import { TaskItem } from '../TaskItem/TaskItem';
 import type { Task } from '../../types/task';
+import { Stack } from '@mantine/core';
 
 type TaskListProps = {
   tasks: Task[];
@@ -8,12 +9,10 @@ type TaskListProps = {
 
 export const TaskList = ({ tasks, toggleTask }: TaskListProps) => {
   return (
-    <>
-      <ul style={{ listStyle: 'none' }}>
-        {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} toggleTask={toggleTask} />
-        ))}
-      </ul>
-    </>
+    <Stack component='ul' gap='sm' m={0} p={0} style={{ listStyle: 'none' }}>
+      {tasks.map((task) => (
+        <TaskItem key={task.id} task={task} toggleTask={toggleTask} />
+      ))}
+    </Stack>
   );
 };
