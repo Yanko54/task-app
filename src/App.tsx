@@ -13,7 +13,6 @@ function App() {
 
   // タスク追加
   const handleAddTask = (title: string, desc: string) => {
-    if (title.trim() === '') return;
     const newTask: Task = {
       id: crypto.randomUUID(),
       title: title,
