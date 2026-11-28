@@ -40,7 +40,7 @@ export const TaskForm = ({ onAddTask }: TaskFormProps) => {
             <IconPlus stroke={1.5} />
           </ActionIcon>
         </Group>
-        <Group align='flex-start'>
+        <Group gap='8' align='flex-start'>
           {<IconTextPlus stroke={1.5} style={{ marginTop: 4 }} />}
           <Textarea
             style={{ flex: 1, minWidth: 0 }}
