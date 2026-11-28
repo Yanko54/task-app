@@ -22,6 +22,11 @@ function App() {
     setTasks((prev) => [newTask, ...prev]);
   };
 
+  // タスク削除
+  const handleDeleteTask = (id: string) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   // タスク完了/未完了トグル
   const toggleTask = (id: string) => {
     setTasks(
@@ -54,7 +59,11 @@ function App() {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        <TaskList tasks={activeTabTasks} toggleTask={toggleTask} />
+        <TaskList
+          tasks={activeTabTasks}
+          toggleTask={toggleTask}
+          onDeleteTask={handleDeleteTask}
+        />
       </Stack>
     </Container>
   );
